@@ -1,0 +1,14 @@
+package com.chedl.controller;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.chedl.service.DemoService;
+public class Consumer {
+	public static void main(String[] args) throws Exception {
+		//读取Spring配置文件applicationContext.xml，并启动
+		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(new String[] { "spring-dubbo.xml" });
+		context.start();
+		//获取bean
+		DemoService demoService = (DemoService) context.getBean("demoService");
+		String result = demoService.sayHello("chedl");
+		System.out.println(result);
+	}
+}
